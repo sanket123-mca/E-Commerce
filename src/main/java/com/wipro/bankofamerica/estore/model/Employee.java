@@ -1,34 +1,43 @@
 package com.wipro.bankofamerica.estore.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Entity 
-@Table (name="Emplyoe")
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+
 public class Employee {
-
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	
-	private Integer emplyoeId;
-	
-	private String firstName;
-	
-	private String lastName;
-	
-	private String emailId;
-	
-	private String city;
-
-	public Integer getEmplyoeId() {
-		return emplyoeId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String emailId;
+    public Integer getId() {
+		return id;
 	}
 
-	public void setEmplyoeId(Integer emplyoeId) {
-		this.emplyoeId = emplyoeId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -63,10 +72,16 @@ public class Employee {
 		this.city = city;
 	}
 
-	@Override
-	public String toString() {
-		return "Emplyoe [emplyoeId=" + emplyoeId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
-				+ emailId + ", city=" + city + "]";
+	public List<Address> getAddresses() {
+		return addresses;
 	}
-	
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	private String city;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList<>();
 }
