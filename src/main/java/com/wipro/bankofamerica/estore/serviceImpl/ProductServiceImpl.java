@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Optional<Product> getProductById(Integer id) {
+	public Optional<Product> getProductById(Integer id) throws Exception{
 	    if (id == null) {
         throw new IllegalArgumentException("Product ID cannot be null.");
     }
@@ -62,6 +62,12 @@ public class ProductServiceImpl implements ProductService {
     } else {
         throw new ProductNotFoundException("Product ID :: " + id + " not found.");
     }
+	}
+
+	@Override
+	public Product updateProduct(Product product) {
+		
+		return null;
 	}
 
 }

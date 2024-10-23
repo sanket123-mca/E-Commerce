@@ -40,7 +40,7 @@ public class ProductController {
 		}
 	
 	@GetMapping("get/{id}")
-	public ResponseEntity<Optional<Product>> getProductById(@PathVariable int id){
+	public ResponseEntity<Optional<Product>> getProductById(@PathVariable int id) throws Exception{
 		Optional<Product> product = productservice.getProductById(id);
 		return ResponseEntity.ok().body(product);
 		

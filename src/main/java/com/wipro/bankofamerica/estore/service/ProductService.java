@@ -14,8 +14,9 @@ public interface ProductService {
 	
 	public List<Product> getAllProduct();
 	
-	public Optional<Product> getProductById(Integer id);
+	public Optional<Product> getProductById(Integer id) throws Exception;
 	
 	public void deleteProduct(Integer id);
-
+    
+	public Product updateProduct(Product product);
 }
